@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GoogleMapView">
+        <attr name="setMapType" format="integer">
+            <enum name="satellite" value="0" />
+            <enum name="roadmap"   value="1" />
+            <enum name="hybrid"    value="2" />
+            <enum name="terrain"    value="3" />
+        </attr>
+
+        <attr name="setMapScale" format="integer">
+            <enum name="LOW" value="1"/>
+            <enum name="HIGH" value="2"/>
+        </attr>
+        <attr name="setLatitude" format="float"/>
+        <attr name="setLongitude" format="float"/>
+        <attr name="setMapZoom" format="integer"/>
+        <attr name="setMapWidth" format="integer"/>
+        <attr name="setMapHeight" format="integer"/>
+        <attr name="setMapBlur" format="integer"/>
+        <attr name="setCacheMap" format="boolean"/>
+    </declare-styleable>
+</resources>
