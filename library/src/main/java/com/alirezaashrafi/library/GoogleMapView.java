@@ -1,31 +1,19 @@
 package com.alirezaashrafi.library;
 
-import android.app.WallpaperManager;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
-import android.graphics.Canvas;
-import android.graphics.ColorFilter;
-import android.graphics.Paint;
-import android.graphics.PorterDuff;
-import android.graphics.PorterDuffColorFilter;
-import android.graphics.drawable.Drawable;
 import android.location.Location;
 import android.net.Uri;
 import android.support.annotation.Nullable;
-import android.support.v4.content.ContextCompat;
 import android.util.AttributeSet;
 import android.util.Log;
-import android.view.View;
 import android.widget.ImageView;
 
 import com.alirezaashrafi.library.interfaces.OnBitmapLoad;
-import com.alirezaashrafi.library.interfaces.OnDrawableLoad;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.jar.Attributes;
 
 /**
  * HexDownload Created by AlirezaAshrafi on 2/17/2018.
@@ -34,20 +22,17 @@ import java.util.jar.Attributes;
 public class GoogleMapView extends ImageView {
     private final String TAG = this.getClass().getName();
 
+    private boolean init = false;
+    private float latitude;
+    private float longitude;
+    private int mapZoom;
+    private int mapHeight;
+    private int mapWidth;
+    private int mapBlur;
+    private boolean cacheMap;
+    private int mapScale;
+    private String mapType;
 
-    public static class Configs{
-        public static float latitude = 35.744920f;
-        public static float longitude = 51.376303f;
-        public static int mapZoom = 17;
-        public static int mapHeight = 640;
-        public static int mapWidth = 640;
-        public static int mapBlur = 0;
-        public static boolean cacheMap = false;
-        public static int mapScale = 1;
-        public static String maptype = "satellite";
-
-
-    }
     public GoogleMapView(Context context) {
         super(context);
         init(context, null);
@@ -72,87 +57,91 @@ public class GoogleMapView extends ImageView {
     }
 
     public float getLatitude() {
-        return Configs.latitude;
+        return this.latitude;
     }
 
     public void setLatitude(float latitude) {
-        Configs.latitude = latitude;
+        this.latitude = latitude;
         load();
     }
 
+    public void setLocation(Location location) {
+        if (location != null) {
+            latitude = (float)location.getLatitude();
+            longitude = (float)location.getLongitude();
+            load();
+        }
+    }
+
     public float getLongitude() {
-        return Configs.longitude;
+        return this.longitude;
     }
 
     public void setLongitude(float longitude) {
-        Configs.longitude = longitude;
+        this.longitude = longitude;
         load();
     }
 
     public int getMapZoom() {
-        return Configs.mapZoom;
+        return this.mapZoom;
     }
 
     public void setMapZoom(int mapZoom) {
-        Configs.mapZoom = mapZoom;
+        this.mapZoom = mapZoom;
         load();
     }
 
     public int getMapHeight() {
-        return Configs.mapHeight;
+        return this.mapHeight;
     }
 
     public void setMapHeight(int mapHeight) {
-        Configs.mapHeight = mapHeight;
+        this.mapHeight = mapHeight;
         load();
     }
 
     public int getMapWidth() {
-        return Configs.mapWidth;
+        return this.mapWidth;
     }
 
     public void setMapWidth(int mapWidth) {
-        Configs.mapWidth = mapWidth;
+        this.mapWidth = mapWidth;
         load();
     }
 
     public int getMapBlur() {
-        return Configs.mapBlur;
+        return this.mapBlur;
     }
 
     public void setMapBlur(int mapBlur) {
-        Configs.mapBlur = mapBlur;
+        this.mapBlur = mapBlur;
         load();
     }
 
     public boolean isCacheMap() {
-        return Configs.cacheMap;
+        return this.cacheMap;
     }
 
     public void setCacheMap(boolean cacheMap) {
-        Configs.cacheMap = cacheMap;
+        this.cacheMap = cacheMap;
         load();
     }
 
     public void setMapType(MapType mapType) {
-
-
         setMapType(mapType.getValue());
-
-        load();
     }
 
     public String getMapType() {
-        return Configs.maptype;
+        return this.mapType;
     }
 
     public void setMapScale(MapScale mapScale) {
-        Configs.mapScale = mapScale.getValue();
+        this.mapScale = mapScale.getValue();
         load();
     }
 
     public int getMapScale() {
-        return Configs.mapScale;
+        return this.mapScale;
     }
 
     public enum MapType {
@@ -161,60 +150,86 @@ public class GoogleMapView extends ImageView {
         hybrid(2),
         terrain(3);
         private int value;
+
         MapType(int value) {
             this.value = value;
         }
+
         public int getValue() {
             return value;
         }
     }
 
     private void setMapType(int type) {
+
+        Log.i(TAG, "setMapType: " + type);
         switch (type) {
             case 0:
-                Configs.maptype = "satellite";
+                this.mapType = "satellite";
                 break;
             case 1:
-                Configs.maptype = "roadmap";
+                this.mapType = "roadmap";
                 break;
             case 2:
-                Configs.maptype = "hybrid";
+                this.mapType = "hybrid";
                 break;
             case 3:
-                Configs.maptype = "terrain";
+                this.mapType = "terrain";
                 break;
+
         }
+        load();
     }
 
     public enum MapScale {
         LOW(1),
         HIGH(2);
         private int value;
+
         MapScale(int value) {
             this.value = value;
         }
+
         public int getValue() {
             return value;
         }
     }
 
 
+    private void initVariables() {
+        if (!init){
+            init=true;
+            latitude = GoogleMapViewConfigs.latitude;
+            longitude = GoogleMapViewConfigs.longitude;
+            mapZoom = GoogleMapViewConfigs.mapZoom;
+            mapHeight = GoogleMapViewConfigs.mapHeight;
+            mapWidth = GoogleMapViewConfigs.mapWidth;
+            mapBlur = GoogleMapViewConfigs.mapBlur;
+            cacheMap = GoogleMapViewConfigs.cacheMap;
+            mapScale = GoogleMapViewConfigs.mapScale;
+            mapType = GoogleMapViewConfigs.mapType;
+        }
+
+    }
+
     private void init(Context context, AttributeSet attributeSet) {
+        initVariables();
         if (attributeSet != null) {
+
             TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.GoogleMapView);
-            Configs.latitude = typedArray.getFloat(R.styleable.GoogleMapView_setLatitude, Configs.latitude);
-            Configs.longitude = typedArray.getFloat(R.styleable.GoogleMapView_setLongitude, Configs.longitude);
-            Configs.mapZoom = typedArray.getInt(R.styleable.GoogleMapView_setMapZoom, Configs.mapZoom);
-            Configs.mapHeight = typedArray.getInt(R.styleable.GoogleMapView_setMapHeight, Configs.mapHeight);
-            Configs.mapWidth = typedArray.getInt(R.styleable.GoogleMapView_setMapWidth, Configs.mapWidth);
-            Configs.mapBlur = typedArray.getInt(R.styleable.GoogleMapView_setMapBlur, Configs.mapBlur);
-            Configs.cacheMap = typedArray.getBoolean(R.styleable.GoogleMapView_setCacheMap, Configs.cacheMap);
-            Configs.mapScale = typedArray.getInt(R.styleable.GoogleMapView_setMapScale, Configs.mapScale);
-            int mapType = typedArray.getInt(R.styleable.GoogleMapView_setMapType, 0);
-            setMapType(mapType);
+            this.latitude = typedArray.getFloat(R.styleable.GoogleMapView_setLatitude, this.latitude);
+            this.longitude = typedArray.getFloat(R.styleable.GoogleMapView_setLongitude, this.longitude);
+            this.mapZoom = typedArray.getInt(R.styleable.GoogleMapView_setMapZoom, this.mapZoom);
+            this.mapHeight = typedArray.getInt(R.styleable.GoogleMapView_setMapHeight, this.mapHeight);
+            this.mapWidth = typedArray.getInt(R.styleable.GoogleMapView_setMapWidth, this.mapWidth);
+            this.mapBlur = typedArray.getInt(R.styleable.GoogleMapView_setMapBlur, this.mapBlur);
+            this.cacheMap = typedArray.getBoolean(R.styleable.GoogleMapView_setCacheMap, this.cacheMap);
+            this.mapScale = typedArray.getInt(R.styleable.GoogleMapView_setMapScale, this.mapScale);
+            int mapTypeCode = typedArray.getInt(R.styleable.GoogleMapView_setMapType, 0);
+
 
             try {
-                load();
+                setMapType(mapTypeCode);
             } finally {
                 invalidate();
                 requestLayout();
@@ -224,24 +239,25 @@ public class GoogleMapView extends ImageView {
     }
 
     private void load() {
-        load(Configs.mapZoom
-                , Configs.mapBlur
-                , Configs.latitude
-                , Configs.longitude
-                , Configs.maptype
-                , Configs.mapWidth
-                , Configs.mapHeight
-                , Configs.cacheMap
-                , Configs.mapScale);
+        load(this.mapZoom
+                , this.mapBlur
+                , this.latitude
+                , this.longitude
+                , this.mapType
+                , this.mapWidth
+                , this.mapHeight
+                , this.cacheMap
+                , this.mapScale);
     }
 
     private void load(int zoom, int blur, float latitude, float longitude, final String maptype, int width, int height, boolean cache, int scale) {
 
+        Log.i(TAG, "load: " + cache + "   " + maptype);
         List<Get> gets = new ArrayList<>();
         gets.add(new Get().setKey("center").setValue(String.valueOf(latitude) + "," + String.valueOf(longitude)));
         gets.add(new Get().setKey("zoom").setValue(zoom));
         gets.add(new Get().setKey("size").setValue(String.valueOf(width) + "x" + String.valueOf(height)));
-        gets.add(new Get().setKey("maptype").setValue(maptype));
+        gets.add(new Get().setKey("mapType").setValue(maptype));
         gets.add(new Get().setKey("scale").setValue(scale));
         gets.add(new Get().setKey("format").setValue("jpg"));
 
@@ -251,7 +267,8 @@ public class GoogleMapView extends ImageView {
                 @Override
                 public void bitmap(Bitmap bitmap) {
 
-                    if (Configs.maptype.equals(maptype)){
+                    Log.i(TAG, "bitmap: 222  " + GoogleMapView.this.mapType + "   " + maptype);
+                    if (GoogleMapView.this.mapType.equals(maptype)) {
                         setImageBitmap(bitmap);
                         invalidate();
                         requestLayout();
@@ -263,7 +280,10 @@ public class GoogleMapView extends ImageView {
             Pico.with(getContext()).from(link).setBlur(blur).into(new OnBitmapLoad() {
                 @Override
                 public void bitmap(Bitmap bitmap) {
-                    if (Configs.maptype.equals(maptype)){
+
+                    Log.i(TAG, "bitmap: 223  " + GoogleMapView.this.mapType + "   " + maptype);
+
+                    if (GoogleMapView.this.mapType.equals(maptype)) {
                         setImageBitmap(bitmap);
                         invalidate();
                         requestLayout();

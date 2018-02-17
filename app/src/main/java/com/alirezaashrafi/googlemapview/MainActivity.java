@@ -13,6 +13,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         GoogleMapView googleMapView = (GoogleMapView) findViewById(R.id.googleMapView);
-        googleMapView.setMapScale(GoogleMapView.MapScale.HIGH);
+        //googleMapView.setMapScale(GoogleMapView.MapScale.HIGH);
+        //googleMapView.setMapType(GoogleMapView.MapType.satellite);
     }
 }

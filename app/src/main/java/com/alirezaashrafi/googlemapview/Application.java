@@ -1,6 +1,8 @@
 package com.alirezaashrafi.googlemapview;
 
-import com.alirezaashrafi.library.GoogleMapView;
+import android.util.Log;
+
+import com.alirezaashrafi.library.GoogleMapViewConfigs;
 
 /**
  * GoogleMapView Created by AlirezaAshrafi on 2/17/2018.
@@ -11,6 +13,7 @@ public class Application extends android.app.Application {
     public void onCreate() {
         super.onCreate();
 
-        GoogleMapView.Configs.maptype = "roadmap";
+        GoogleMapViewConfigs.mapType = GoogleMapViewConfigs.SATELLITE;
+        GoogleMapViewConfigs.cacheMap = true;
     }
 }
