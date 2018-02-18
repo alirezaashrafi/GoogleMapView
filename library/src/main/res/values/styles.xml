@@ -2,7 +2,7 @@
 <resources>
 
     <style name="GoogleMapView">
-        <item name="setMapType">satellite</item>
+        <item name="setMapType">roadmap</item>
         <item name="setMapScale">low</item>
         <item name="setLatitude">35.744920</item>
         <item name="setLongitude">51.376303</item>

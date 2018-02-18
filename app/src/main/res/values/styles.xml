@@ -7,6 +7,8 @@
 
     <style name="googleViewStyle" parent="GoogleMapView">
         <item name="android:layout_margin">2dp</item>
+        <item name="setLatitude">37.422438</item>
+        <item name="setLongitude">-122.085614</item>
         <item name="android:layout_height">match_parent</item>
         <item name="android:layout_width">0dp</item>
         <item name="android:scaleType">centerCrop</item>

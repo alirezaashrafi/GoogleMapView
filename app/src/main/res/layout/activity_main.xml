@@ -24,14 +24,12 @@
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map1"
                 style="@style/googleViewStyle"
-                app:setMapType="satellite"
-                app:setMapZoom="9" />
+                app:setMapZoom="2" />
 
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map2"
                 style="@style/googleViewStyle"
-                app:setMapType="roadmap"
-                app:setMapZoom="9" />
+                app:setMapZoom="4" />
         </TableRow>
 
         <TableRow
@@ -43,14 +41,12 @@
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map3"
                 style="@style/googleViewStyle"
-                app:setMapType="satellite"
-                app:setMapZoom="14" />
+                app:setMapZoom="9" />
 
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map4"
                 style="@style/googleViewStyle"
-                app:setMapType="roadmap"
-                app:setMapZoom="14" />
+                app:setMapZoom="12" />
 
 
         </TableRow>
@@ -65,13 +61,11 @@
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map5"
                 style="@style/googleViewStyle"
-                app:setMapType="satellite"
-                app:setMapZoom="18" />
+                app:setMapZoom="15" />
 
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/map6"
                 style="@style/googleViewStyle"
-                app:setMapType="roadmap"
                 app:setMapZoom="18" />
 
 
