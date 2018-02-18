@@ -11,8 +11,6 @@ android {
         versionCode 1
         versionName "1.0"
 
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-
     }
 
     buildTypes {
@@ -26,9 +24,6 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-
-    implementation 'com.android.support:appcompat-v7:26.0.0-alpha1'
     testImplementation 'junit:junit:4.12'
-    compile 'com.github.alirezaashrafi:pico:3'
-
+    compile 'com.squareup.picasso:picasso:2.5.2'
 }

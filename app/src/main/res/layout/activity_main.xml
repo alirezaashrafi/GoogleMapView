@@ -1,17 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#333333"
+    android:paddingBottom="2dp"
+    android:paddingLeft="2dp"
+    android:paddingRight="2dp"
     tools:context="com.alirezaashrafi.googlemapview.MainActivity">
 
-    <com.alirezaashrafi.library.GoogleMapView
+    <TableLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/googleMapView"
-        android:scaleType="centerCrop"
-        app:setMapScale="LOW"
-        android:adjustViewBounds="true" />
+        android:layout_height="match_parent"
+        android:orientation="vertical">
 
-</android.support.constraint.ConstraintLayout>
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map1"
+                style="@style/googleViewStyle"
+                app:setMapType="satellite"
+                app:setMapZoom="9" />
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map2"
+                style="@style/googleViewStyle"
+                app:setMapType="roadmap"
+                app:setMapZoom="9" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map3"
+                style="@style/googleViewStyle"
+                app:setMapType="satellite"
+                app:setMapZoom="14" />
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map4"
+                style="@style/googleViewStyle"
+                app:setMapType="roadmap"
+                app:setMapZoom="14" />
+
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+
+            android:layout_weight="1"
+            android:orientation="horizontal">
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map5"
+                style="@style/googleViewStyle"
+                app:setMapType="satellite"
+                app:setMapZoom="18" />
+
+            <com.alirezaashrafi.library.GoogleMapView
+                android:id="@+id/map6"
+                style="@style/googleViewStyle"
+                app:setMapType="roadmap"
+                app:setMapZoom="18" />
+
+
+        </TableRow>
+
+    </TableLayout>
+
+
+</RelativeLayout>

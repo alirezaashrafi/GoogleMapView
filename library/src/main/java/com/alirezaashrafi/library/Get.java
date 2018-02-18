@@ -1,6 +1,6 @@
 package com.alirezaashrafi.library;
 
-public class Get {
+ class Get {
         private String key = "";
         private String value = "";
 
