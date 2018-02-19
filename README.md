@@ -23,7 +23,7 @@
 ```
 ###### add this line to your module build.gradle dependecies block:
 ```java
-    compile 'com.github.alirezaashrafi:codia:2.0.0'
+    compile 'com.github.alirezaashrafi:GoogleMapView:1.0.2'
 ```
 
 ### Maven
@@ -40,11 +40,11 @@
 ###### Add the dependency
 
 ```xml
-  <dependency>
-    <groupId>com.github.alirezaashrafi</groupId>
-    <artifactId>codia</artifactId>
-    <version>2.0.0</version>
-  </dependency>
+    <dependency>
+      <groupId>com.github.alirezaashrafi</groupId>
+      <artifactId>GoogleMapView</artifactId>
+      <version>1.0.2</version>
+    </dependency>
 ```
 ---
 
