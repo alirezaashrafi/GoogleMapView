@@ -78,12 +78,13 @@
   googleMapView.setMapZoom(15);
   googleMapView.setMapWidth(350);
   googleMapView.setMapHeight(350);
+  googleMapView.setLocation(location);
 
 ```
 
 ---
 
-# setCustom style to GoogleMapView
+# custom style GoogleMapView
 ```XML
   <style name="googleViewStyle" parent="GoogleMapView">
       <item name="android:layout_width">match_parent</item>

@@ -23,15 +23,8 @@
 
             <com.alirezaashrafi.library.GoogleMapView
                 android:id="@+id/googleMapView"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                app:setLatitude="35.744920"
-                app:setLongitude="51.376303"
-                app:setMapHeight="350"
-                app:setMapScale="high"
-                app:setMapType="satellite"
-                app:setMapWidth="350"
-                app:setMapZoom="15" />
+                app:setMapZoom="2"
+                style="@style/googleViewStyle" />
 
 
             <com.alirezaashrafi.library.GoogleMapView
