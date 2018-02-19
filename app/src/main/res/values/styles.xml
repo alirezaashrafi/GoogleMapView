@@ -6,13 +6,14 @@
     </style>
 
     <style name="googleViewStyle" parent="GoogleMapView">
-        <item name="android:layout_margin">2dp</item>
-        <item name="setLatitude">37.422438</item>
-        <item name="setLongitude">-122.085614</item>
+        <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">match_parent</item>
-        <item name="android:layout_width">0dp</item>
-        <item name="android:scaleType">centerCrop</item>
-        <item name="android:adjustViewBounds">true</item>
-        <item name="android:layout_weight">1</item>
+        <item name="setMapType">roadmap</item>
+        <item name="setMapScale">low</item>
+        <item name="setLatitude">35.744920</item>
+        <item name="setLongitude">51.376303</item>
+        <item name="setMapZoom">17</item>
+        <item name="setMapWidth">640</item>
+        <item name="setMapHeight">640</item>
     </style>
 </resources>

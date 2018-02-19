@@ -1,4 +1,5 @@
 # Android GoogleMapView Library
+
 #### A library to make the map display process easier by entering latitude and longitude only
 
 
@@ -47,9 +48,74 @@
 ```
 ---
 
+# how to use GoogleMapView
 
 
 
+### XML
+```xml
+  <com.alirezaashrafi.library.GoogleMapView
+      android:id="@+id/googleMapView"
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      app:setLatitude="35.744920"
+      app:setLongitude="51.376303"
+      app:setMapType="satellite"
+      app:setMapScale="high"
+      app:setMapZoom="15"
+      app:setMapWidth="350"
+      app:setMapHeight="350"/>
+
+```
+
+### JAVA
+```java
+  GoogleMapView googleMapView = (GoogleMapView) findViewById(R.id.googleMapView);
+  googleMapView.setLatitude(35.744920f);
+  googleMapView.setLongitude(51.376303f);
+  googleMapView.setMapType(MapType.SATELLITE);
+  googleMapView.setMapScale(MapScale.HIGH);
+  googleMapView.setMapZoom(15);
+  googleMapView.setMapWidth(350);
+  googleMapView.setMapHeight(350);
+
+```
+
+---
+
+# setCustom style to GoogleMapView
+```XML
+  <style name="googleViewStyle" parent="GoogleMapView">
+      <item name="android:layout_width">match_parent</item>
+      <item name="android:layout_height">match_parent</item>
+      <item name="setMapType">roadmap</item>
+      <item name="setMapScale">low</item>
+      <item name="setLatitude">35.744920</item>
+      <item name="setLongitude">51.376303</item>
+      <item name="setMapZoom">17</item>
+      <item name="setMapWidth">640</item>
+      <item name="setMapHeight">640</item>
+  </style>
+```
+---
+
+# how to change GoogleMapView default values?
+#### note: better performance if change default values is Application class onCreate
+```JAVA
+  @Override
+  public void onCreate() {
+      super.onCreate();
+
+      GoogleMapViewConfigs.setDefaultMapType(MapType.SATELLITE);
+      GoogleMapViewConfigs.setDefaultLatitude(35.744920f);
+      GoogleMapViewConfigs.setDefaultLongitude(51.376303f);
+      GoogleMapViewConfigs.setDefaultMapZoom(17);
+      GoogleMapViewConfigs.setDefaultMapScale(MapScale.HIGH);
+      GoogleMapViewConfigs.setDefaultMapHeight(350);
+      GoogleMapViewConfigs.setDefaultMapWidth(350);
+  }
+```
+---
 
 ## Licence
 Copyright 2018 Alireza Ashrafi
