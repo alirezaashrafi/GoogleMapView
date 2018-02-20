@@ -1,4 +1,4 @@
-# Android GoogleMapView Library
+# Android google map view Library by static map 
 
 #### A library to make the map display process easier by entering latitude and longitude only
 
