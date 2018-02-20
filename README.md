@@ -50,9 +50,19 @@
 
 # how to use GoogleMapView
 
+### **Attributes**
 
+|        Attribute Name        | Type    | Default Value |
+|:----------------------------:|---------|---------------|
+| setLatitude    | float | 35.744920          |
+| setLongitude    | float | 51.376303         |
+| setMapType     | enum  |  satellite             |
+| setMapScale    | enum  | high |
+| setMapZoom     | int   | 17   |
+| setMapWidth   | int   | 640px    |
+| setMapHeight   | int   | 640px    |
 
-### XML
+### **XML**
 ```xml
   <com.alirezaashrafi.library.GoogleMapView
       android:id="@+id/googleMapView"

@@ -1,7 +1,14 @@
 apply plugin: 'com.android.library'
-
+ext {
+    PUBLISH_GROUP_ID = 'cyd.awesome.android'
+    PUBLISH_ARTIFACT_ID = 'awesome-material'
+    PUBLISH_VERSION = '1.0'
+}
 android {
     compileSdkVersion 26
+    lintOptions {
+        abortOnError false
+    }
 
 
 
@@ -27,3 +34,5 @@ dependencies {
     testImplementation 'junit:junit:4.12'
     compile 'com.squareup.picasso:picasso:2.5.2'
 }
+
+apply from: 'https://raw.githubusercontent.com/blundell/release-android-library/master/android-release-aar.gradle'
