@@ -111,7 +111,7 @@
 ---
 
 # how to change GoogleMapView default values?
-#### note: better performance if change default values is Application class onCreate
+#### note: for better performance change default values in the Application class onCreate method
 ```JAVA
   @Override
   public void onCreate() {
