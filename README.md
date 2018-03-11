@@ -23,7 +23,7 @@
 ```
 ###### add this line to your module build.gradle dependecies block:
 ```java
-    compile 'com.github.alirezaashrafi:GoogleMapView:1.0.2'
+    compile 'com.github.alirezaashrafi:GoogleMapView:1.0.4'
 ```
 
 ### Maven
@@ -43,7 +43,7 @@
     <dependency>
       <groupId>com.github.alirezaashrafi</groupId>
       <artifactId>GoogleMapView</artifactId>
-      <version>1.0.2</version>
+      <version>1.0.4</version>
     </dependency>
 ```
 ---
