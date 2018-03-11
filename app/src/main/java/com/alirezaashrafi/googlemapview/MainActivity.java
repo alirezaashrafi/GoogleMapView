@@ -22,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
         googleMapView.setMapZoom(15);
         googleMapView.setMapWidth(350);
         googleMapView.setMapHeight(350);
+        googleMapView.setZoomable(this);
         //googleMapView.setLocation(location);
     }
 

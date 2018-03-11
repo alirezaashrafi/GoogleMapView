@@ -1,4 +1,4 @@
-# Android google map view Library by static map 
+# Android google map view Library by static map
 
 #### A library to make the map display process easier by entering latitude and longitude only
 
@@ -89,6 +89,8 @@
   googleMapView.setMapWidth(350);
   googleMapView.setMapHeight(350);
   googleMapView.setLocation(location);
+  googleMapView.setZoomable(activity);
+
 
 ```
 
@@ -124,10 +126,17 @@
       GoogleMapViewConfigs.setDefaultMapScale(MapScale.HIGH);
       GoogleMapViewConfigs.setDefaultMapHeight(350);
       GoogleMapViewConfigs.setDefaultMapWidth(350);
+
   }
 ```
 ---
+## Pinch to zoom in JAVA
+```JAVA
+    googleMapView.setZoomable(this);
+```
+<img src="https://raw.githubusercontent.com/alirezaashrafi/GoogleMapView/master/IMAGES/zoom.gif"/>
 
+---
 ## Licence
 Copyright 2018 Alireza Ashrafi
 

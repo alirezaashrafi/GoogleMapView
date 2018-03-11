@@ -1,5 +1,6 @@
 package com.alirezaashrafi.library;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.location.Location;
@@ -7,6 +8,8 @@ import android.net.Uri;
 import android.util.AttributeSet;
 import android.widget.ImageView;
 
+import com.alirezaashrafi.library.zoom.Zoomy;
+import com.alirezaashrafi.library.zoom.ZoomyConfig;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
@@ -105,7 +108,6 @@ public class GoogleMapView extends ImageView {
     }
 
 
-
     public void setMapType(MapType mapType) {
         this.mapType = (mapType.getValue());
         load();
@@ -139,9 +141,18 @@ public class GoogleMapView extends ImageView {
 
     }
 
+    public void setZoomable(Activity activity) {
+        Zoomy.Builder builder = new Zoomy.Builder(activity)
+                .target(this)
+                .enableImmersiveMode(false)
+                .animateZooming(false);
+        builder.register();
+    }
+
     private void init(Context context, AttributeSet attributeSet) {
         initVariables();
         if (attributeSet != null) {
+
             TypedArray typedArray = getContext().obtainStyledAttributes(attributeSet, R.styleable.GoogleMapView);
             try {
                 this.latitude = typedArray.getFloat(R.styleable.GoogleMapView_setLatitude, this.latitude);
